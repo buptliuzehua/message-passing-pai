@@ -11,6 +11,8 @@ double calPai(int start, int end){
       partial_res+=1/(1+((start-0.5)/N)*((start-0.5)/N));
       start++;
     }
+    start = 0;
+    count++;
   }
   return partial_res/1000;
 }
@@ -56,20 +58,21 @@ int main(void)
     pro_start = (rank-1)*num_in_each_pro+1;
     pro_end = rank*num_in_each_pro;
     sum_in_each_pro=calPai(pro_start,pro_end);
-    printf("%d\n", sum_in_each_pro);
+    //printf("%d\n", sum_in_each_pro);
     MPI_Ssend(&sum_in_each_pro,1,MPI_DOUBLE,0,MPI_ANY_TAG,comm);
   }else{
     for(recv_count=1;recv_count<size;recv_count++){
       MPI_Recv(&temp, 1, MPI_DOUBLE, recv_count, MPI_ANY_TAG,comm, &status);
       result+=temp;
+      //printf("%f\n", result);
     }
     result = final_deal_pai(result,num_in_each_pro);
-    printf("%f\n", result);
-    MPI_Barrier(MPI_COMM_WORLD);
-
-    tstop = MPI_Wtime();
-
-    printf("%f, %f\n", result,tstop-tstart);
+    //printf("%f\n", result);
   }
+  MPI_Barrier(MPI_COMM_WORLD);
+
+  tstop = MPI_Wtime();
+
+  printf("%f, %f\n", result,tstop-tstart);
   MPI_Finalize();
 }
