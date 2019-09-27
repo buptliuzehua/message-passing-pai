@@ -6,15 +6,15 @@
 double calPai(int start, int end){
   double partial_res = 0;
   int count = 0;
-  while (count<1000000) {
+  //while (count<1000000) {
     while (start<=end) {
       partial_res+=1/(1+((start-0.5)/N)*((start-0.5)/N));
       start++;
     }
-    start = 1;
-    count++;
-  }
-  return partial_res/1000;
+    //start = 1;
+  //  count++;
+//  }
+  return partial_res;
 }
 double final_deal_pai(double pre_result, int pro_num){
   return 4*pre_result/pro_num;
