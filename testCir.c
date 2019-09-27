@@ -9,6 +9,7 @@ double calPai(int start, int end){
   while (count<1000) {
     while (start<=end) {
       partial_res+=1/(1+((start-0.5)/N)*((start-0.5)/N));
+      start++;
     }
   }
   return partial_res/1000;
@@ -55,6 +56,7 @@ int main(void)
     pro_start = (rank-1)*num_in_each_pro+1;
     pro_end = rank*num_in_each_pro;
     sum_in_each_pro=calPai(pro_start,pro_end);
+    printf("%d\n", sum_in_each_pro);
     MPI_Ssend(&sum_in_each_pro,1,MPI_DOUBLE,0,MPI_ANY_TAG,comm);
   }else{
     for(recv_count=1;recv_count<size;recv_count++){
