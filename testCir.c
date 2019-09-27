@@ -17,7 +17,7 @@ double calPai(int start, int end){
   return partial_res;
 }
 double final_deal_pai(double pre_result, int pro_num){
-  return 4*pre_result/pro_num;
+  return 4*pre_result/N;
 }
 int main(void)
 {
@@ -41,7 +41,7 @@ int main(void)
 
   MPI_Get_processor_name(name, &len);
 
-  int num_in_each_pro = N/(size-1);
+  int num_in_each_pro = N/(size-1);//因为0进程不参与计算，所以分size-1次
 
   int count = 1;
 
@@ -66,7 +66,7 @@ int main(void)
       result+=temp;
       //printf("%f\n", result);
     }
-    result = final_deal_pai(result,num_in_each_pro);
+    result = final_deal_pai(result,num_in_each_pro，size-1);
     //printf("%f\n", result);
   }
   MPI_Barrier(MPI_COMM_WORLD);
