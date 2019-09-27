@@ -60,7 +60,7 @@ int main(void)
     MPI_Ssend(&sum_in_each_pro,1,MPI_DOUBLE,0,MPI_ANY_TAG,comm);
   }else{
     for(recv_count=1;recv_count<size;recv_count++){
-      MPI_Recv(&temp, 1, MPI_DOUBLE, recv_count, MPI_ANY_TAG,comm, MPI_Status * status);
+      MPI_Recv(&temp, 1, MPI_DOUBLE, recv_count, MPI_ANY_TAG,comm, &status);
       result+=temp;
     }
     result = final_deal_pai(result,num_in_each_pro);
