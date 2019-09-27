@@ -41,7 +41,7 @@ int main(void)
 
   MPI_Get_processor_name(name, &len);
 
-  int num_in_each_pro = N/size;
+  int num_in_each_pro = N/(size-1);
 
   int count = 1;
 
