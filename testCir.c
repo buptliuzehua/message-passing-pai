@@ -1,11 +1,9 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
-int getLength(int a[]){
-        int n = 0;
-        while(a[n] != '\0') n++;  //'\0'=>表示的是数组存放元素结束的标志
-        return n;
-}
+
+#define N 840
+
 int main(void)
 {
   MPI_Init(NULL, NULL);
@@ -24,28 +22,34 @@ int main(void)
 
   MPI_Get_processor_name(name, &len);
 
-  if(rank!=0){
+  int num_in_each_pro = N/size;
 
-    char send_message[13] = "Hello World!\n"
+  int count = 1;
 
-    printf("this is from process from %s \n", name);
+  double tstart, tstop;
 
-    //strcpy(message, "Hello World!\n");
+  double sum_in_each_pro = 0;
 
-    MPI_Send(&send_message,getLength(send_message)+1,MPI_CHAR,0,99,MPI_COMM_WORLD);
-  }else{
+  MPI_Barrier(MPI_COMM_WORLD);
 
-    int count = 1;
+  tstart = MPI_Wtime();
 
-    while(count < size) {
+  while(count<=num_in_each_pro){
 
-      MPI_Recv(&message,100,MPI_CHAR,i,99,MPI_COMM_WORLD,&status);
 
-      printf("Hello World!this is from process %d \n", i);
+    sum_in_each_pro+=1/(1+((count-0.5)/num_in_each_pro)*((count-0.5)/num_in_each_pro));
 
-      count++;
-    }
+    count++;
+
   }
+
+  double result = 4*sum_in_each_pro/num_in_each_pro;
+
+  MPI_Barrier(MPI_COMM_WORLD);
+
+  tstop = MPI_Wtime();
+
+  printf("%f, %f\n", result,tstop-tstart);
 
   MPI_Finalize();
 }
