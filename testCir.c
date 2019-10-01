@@ -2,20 +2,16 @@
 #include <stdlib.h>
 #include <mpi.h>
 
-#define N 840
+#define N 8400000
 double calPai(int start, int end){
   double partial_res = 0;
   int restart = start;
   int count = 0;
-  while (count<10000) {
     while (start<=end) {
       partial_res+=1/(1+((start-0.5)/N)*((start-0.5)/N));
       start++;
     }
-    start = restart;
-    count++;
-  }
-  return partial_res/10000;
+  return partial_res;
 }
 double final_deal_pai(double pre_result, int pro_num){
   return 4*pre_result/N;
