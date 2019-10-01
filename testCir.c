@@ -66,7 +66,7 @@ int main(void)
       result+=temp;
       //printf("%f\n", result);
     }
-    result = final_deal_pai(result,num_in_each_pro，size-1);
+    result = final_deal_pai(result,num_in_each_pro);
     //printf("%f\n", result);
     MPI_Barrier(MPI_COMM_WORLD);
 
