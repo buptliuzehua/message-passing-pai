@@ -68,11 +68,10 @@ int main(void)
     }
     result = final_deal_pai(result,num_in_each_pro，size-1);
     //printf("%f\n", result);
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    tstop = MPI_Wtime();
+    printf("%f, %f\n", result/(size-1),tstop-tstart);
   }
-  MPI_Barrier(MPI_COMM_WORLD);
-
-  tstop = MPI_Wtime();
-
-  printf("%f, %f\n", result,tstop-tstart);
   MPI_Finalize();
 }
