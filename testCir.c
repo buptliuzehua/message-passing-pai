@@ -14,7 +14,7 @@ double calPai(int start, int end){
     start = 1;
     count++;
   }
-  return partial_res;
+  return partial_res/10000;
 }
 double final_deal_pai(double pre_result, int pro_num){
   return 4*pre_result/N;
