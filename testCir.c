@@ -5,13 +5,14 @@
 #define N 840
 double calPai(int start, int end){
   double partial_res = 0;
+  int restart = start;
   int count = 0;
   while (count<10000) {
     while (start<=end) {
       partial_res+=1/(1+((start-0.5)/N)*((start-0.5)/N));
       start++;
     }
-    start = 1;
+    start = restart;
     count++;
   }
   return partial_res/10000;
