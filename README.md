@@ -40,7 +40,7 @@ Though the program works, and has no bugs that the authors are aware of, it is p
 
 # Structure
 
-.
+.  
 ├── Makefile  
 ├── README.md
 ├── config.mk
