@@ -17,10 +17,55 @@ Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered H
 
 
 ## Background 
+<br />
+#### What does the program do 
+The program creates a grid. Each square is randomly assigned to be empty 1 or filled 0 according to the designed density distribution of filled squares. Each empty square is then assigned a unique number. The program iteratively updates the grid, updating each square is updated with the maximum of its neighbours. When an iteration results in no squares being updated, the iteration exits. The program then checks whether there is a cluster on the top row of the grid that has the same number as one on the bottom row i.e. it checks whether percolation has occurred.
+
+#### Output of the program 
+The program writes out two files. The first is a data file which contains the values of each empty square when each square can be no longer updated i.e. the final state of the grid.The second file is a type of image file, a Portable Grey Map (PGM) file. The largest cluster will be coloured black. Other clusters will be shades of grey, the smaller the cluster the lighter the shade. The filled squares will be coloured white.
+
+#### My work
+Though the program works, and has no bugs that the authors are aware of, it is poorly commented, badly laid out, has cryptic variable names and is not modular. It need to be refactored in following goals:
+- Clean up and refactor the source code to make it more readable, better commented, and more modular. 
+- Extend the program to allow the user to specify the values for the grid size, data file name, PGM file name, rho, seed and maximum number of clusters in the PGM file via the command-line as commandline arguments or parameters.
+- Write a build script which allows a user to:
+&nbsp;&nbsp;&nbsp;&nbsp;Compile and link the source code into an executable.
+&nbsp;&nbsp;&nbsp;&nbsp;Remove any auto-generated files created during compilation, linking or when running the program.
+&nbsp;&nbsp;&nbsp;&nbsp;Show the help document of how to use it.
+- Write documentation, in a plain-text file, on how a user can build and run the program and provide any other information you think a user would find useful.
+ 
+# Environment
+ - GNU Compiler
+ - Linux Operation System
+
+# Structure
+
+.
+├── Makefile
+├── README.md
+├── config.mk
+├── src
+│   ├── arralloc.c
+│   ├── arralloc.h
+│   ├── getColourInfo.h
+│   ├── gridInitialise.h
+│   ├── gridResult.h
+│   ├── gridUpdate.h
+│   ├── initAll.h
+│   ├── percolate.c
+│   ├── structlib.h
+│   ├── uni.c
+│   ├── uni.h
+│   ├── writeDataFile.h
+│   └── writePgmFile.h
+└── tree.txt
+
+- The src folder contains the source code 
+- Make is the script to compile and link the source code
+- The config.mk contains the environment variables used in Makefile
+- tree.txt contains the structure of the whole project
 
 
-
-# Additional infromation
 ### Installation
 
 Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.

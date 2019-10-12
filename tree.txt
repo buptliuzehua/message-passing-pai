@@ -1,0 +1,23 @@
+.
+├── Makefile
+├── README.md
+├── config.mk
+├── src
+│   ├── Makefile
+│   ├── arralloc.c
+│   ├── arralloc.h
+│   ├── config.mk
+│   ├── getColourInfo.h
+│   ├── gridInitialise.h
+│   ├── gridResult.h
+│   ├── gridUpdate.h
+│   ├── initAll.h
+│   ├── percolate.c
+│   ├── structlib.h
+│   ├── uni.c
+│   ├── uni.h
+│   ├── writeDataFile.h
+│   └── writePgmFile.h
+└── tree.txt
+
+1 directory, 19 files
