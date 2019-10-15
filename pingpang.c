@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include <mpi.h>
-#define N 100000000
+#define N 1000
 #define LOOP 10
 static double message1[N];
 static double message2[N];
